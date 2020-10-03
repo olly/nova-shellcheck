@@ -9,7 +9,7 @@
     "main": "main.js",
     
     "activationEvents": [
-        "onLanguage:html"
+        "onLanguage:shell"
     ],
     
     "entitlements": {
