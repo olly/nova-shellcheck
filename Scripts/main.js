@@ -1,11 +1,3 @@
-exports.activate = function () {
-  // Do work when the extension is activated
-};
-
-exports.deactivate = function () {
-  // Clean up state before the extension is deactivated
-};
-
 class IssuesProvider {
   provideIssues(editor) {
     console.info("validating: ", editor.document.path);
@@ -70,6 +62,18 @@ class IssuesProvider {
   }
 }
 
-nova.assistants.registerIssueAssistant("shell", new IssuesProvider(), {
-  event: "onSave",
-});
+var registration = undefined;
+
+exports.activate = function () {
+  registration = nova.assistants.registerIssueAssistant(
+    { syntax: "shell" },
+    new IssuesProvider()
+  );
+};
+
+exports.deactivate = function () {
+  if (registration) {
+    registration.dispose();
+    registration = undefined;
+  }
+};
