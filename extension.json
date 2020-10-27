@@ -1,17 +1,19 @@
 {
     "identifier": "net.51degrees.shellcheck",
     "name": "ShellCheck",
+    "version": "1.0",
     "organization": "51degrees",
     "description": "Integrates ShellCheck for static analysis of shell scripts",
-    "version": "1.0",
-    "categories": ["issues"],
+    "bugs": "https://github.com/olly/nova-shellcheck/issues",
+    "repository": "https://github.com/olly/nova-shellcheck",
+    "categories": [
+        "issues"
+    ],
     
     "main": "main.js",
-    
     "activationEvents": [
         "onLanguage:shell"
     ],
-    
     "entitlements": {
         "process": true
     }
