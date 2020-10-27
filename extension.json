@@ -1,8 +1,8 @@
 {
     "identifier": "net.51degrees.shellcheck",
-    "name": "shellcheck",
+    "name": "ShellCheck",
     "organization": "51degrees",
-    "description": "Lorem ipsum, dolor sit amet.",
+    "description": "Integrates ShellCheck for static analysis of shell scripts",
     "version": "1.0",
     "categories": ["issues"],
     
