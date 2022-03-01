@@ -6,6 +6,7 @@
   "description": "Integrates ShellCheck for static analysis of shell scripts",
   "bugs": "https://github.com/olly/nova-shellcheck/issues",
   "repository": "https://github.com/olly/nova-shellcheck",
+  "funding": "https://www.buymeacoffee.com/ollylegg",
   "categories": ["issues"],
 
   "main": "main.dist.js",
