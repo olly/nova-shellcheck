@@ -100,7 +100,7 @@ export MYVAR=$(cmd)              # Masked exit codes
 case $version in 2.*) :;; 2.6.*) # Shadowed case branches
 Portability
 
-# ShellCheck will warn when using features not supported by the shebang. For example, if you set the shebang to #!/bin/sh, 
+# ShellCheck will warn when using features not supported by the shebang. For example, if you set the shebang to #!/bin/sh,
 # ShellCheck will warn about portability issues similar to checkbashisms:
 
 echo {1..$n}                     # Works in ksh, but not bash/dash/sh

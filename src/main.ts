@@ -1,14 +1,16 @@
 class IssuesProvider {
-  provideIssues(editor) {
+  provideIssues(editor: TextEditor): AssistantArray<Issue> {
     console.info("validating: ", editor.document.path);
     if (!editor.document.path) {
-      return;
+      return [];
     }
 
-    let process = new Promise((resolve, _) => {
-      var process = new Process("shellcheck", {
+    const path = editor.document.path;
+
+    const process: Promise<string> = new Promise((resolve) => {
+      const process = new Process("shellcheck", {
         shell: true,
-        args: ["--format", "json", editor.document.path],
+        args: ["--format", "json", path],
       });
 
       let buffer = "";
@@ -28,10 +30,10 @@ class IssuesProvider {
     });
 
     return process.then(function (stdout) {
-      return JSON.parse(stdout).map(function (data, i) {
+      return JSON.parse(stdout).map(function (data: any, i: number) {
         console.info(i, data.message);
 
-        let issue = new Issue();
+        const issue = new Issue();
 
         issue.message = data.message;
 
@@ -62,7 +64,7 @@ class IssuesProvider {
   }
 }
 
-var registration = undefined;
+let registration: Disposable | null = null;
 
 exports.activate = function () {
   registration = nova.assistants.registerIssueAssistant(
@@ -74,6 +76,6 @@ exports.activate = function () {
 exports.deactivate = function () {
   if (registration) {
     registration.dispose();
-    registration = undefined;
+    registration = null;
   }
 };

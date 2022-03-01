@@ -1,0 +1,28 @@
+name: commit
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+      - run: npm install
+      - run: npm run build
+      - run: zip --recurse-paths shellcheck.novaextension.zip shellcheck.novaextension/
+      - uses: actions/upload-artifact@v2
+        with:
+          name: shellcheck.novaextension
+          path: shellcheck.novaextension.zip
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+      - run: npm install
+      - run: npm run lint:eslint
+        if: always()
+      - run: npm run lint:prettier
+        if: always()
