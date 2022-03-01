@@ -15,3 +15,10 @@ can be opened.
 - `npm run lint`: runs all lints
 - `npm run fix"`: fixes any fixable linter errors
 - `npm run watch`: watches for changes, and rebuild the extension
+
+## Buy Me a Coffee ☕
+
+If this extension benefits your professional workflow, and you have the means, perhaps you'd consider [buying me
+coffee](https://www.buymeacoffee.com/ollylegg). https://www.buymeacoffee.com/ollylegg
+
+Thanks!
