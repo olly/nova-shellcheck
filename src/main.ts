@@ -1,16 +1,30 @@
+interface NovaWritableStream<T = any> {
+  getWriter(): WritableStreamDefaultWriter<T>;
+}
+
+interface WritableStreamDefaultWriter<W = any> {
+  readonly closed: Promise<undefined>;
+  readonly desiredSize: number | null;
+  readonly ready: Promise<undefined>;
+  abort(reason?: any): Promise<void>;
+  close(): Promise<void>;
+  releaseLock(): void;
+  write(chunk?: W): Promise<void>;
+}
+
 class IssuesProvider {
   provideIssues(editor: TextEditor): AssistantArray<Issue> {
-    console.info("validating: ", editor.document.path);
-    if (!editor.document.path) {
-      return [];
-    }
+    console.info("validating: ", editor.document.uri);
 
-    const path = editor.document.path;
+    const documentLength = editor.document.length;
+    const content = editor.document.getTextInRange(
+      new Range(0, documentLength)
+    );
 
     const process: Promise<string> = new Promise((resolve) => {
       const process = new Process("shellcheck", {
         shell: true,
-        args: ["--format", "json", path],
+        args: ["--format", "json", "-"],
       });
 
       let buffer = "";
@@ -27,6 +41,15 @@ class IssuesProvider {
       });
 
       process.start();
+
+      const stdin = process.stdin as NovaWritableStream;
+      if (stdin) {
+        const writer = stdin.getWriter();
+        writer.write(content);
+        writer.close();
+      } else {
+        console.error("no `stdin` configured");
+      }
     });
 
     return process.then(function (stdout) {
