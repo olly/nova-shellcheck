@@ -14,6 +14,11 @@ interface WritableStreamDefaultWriter<W = any> {
 
 class IssuesProvider {
   provideIssues(editor: TextEditor): AssistantArray<Issue> {
+    // Fish shell is not supported by ShellCheck
+    if (editor.document.uri.endsWith(".fish")) {
+      return [];
+    }
+
     console.info("validating: ", editor.document.uri);
 
     const documentLength = editor.document.length;
