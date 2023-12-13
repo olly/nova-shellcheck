@@ -24,6 +24,7 @@ class IssuesProvider {
     const process: Promise<string> = new Promise((resolve) => {
       const process = new Process("shellcheck", {
         shell: true,
+        cwd: nova.workspace.path as string,
         args: ["--format", "json", "-"],
       });
 
