@@ -22,11 +22,18 @@ class IssuesProvider {
     );
 
     const process: Promise<string> = new Promise((resolve) => {
-      const process = new Process("shellcheck", {
+      type ProcessOptions = { args?: string[]; cwd?: string; shell: true };
+
+      const options: ProcessOptions = {
         shell: true,
-        cwd: nova.workspace.path as string,
         args: ["--format", "json", "-"],
-      });
+      };
+
+      if (nova.workspace.path) {
+        options["cwd"] = nova.workspace.path;
+      }
+
+      const process = new Process("shellcheck", options);
 
       let buffer = "";
       process.onStdout(function (line) {
