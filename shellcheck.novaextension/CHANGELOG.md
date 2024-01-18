@@ -1,3 +1,8 @@
+## Version 1.2
+
+- Run `shellcheck` process with the working directory of the Nova Workspace. This ensures that `shellcheck`
+  respects the `.shellcheckrc` file in the project's directory. Thanks [@samdoran](https://github.com/samdoran) 🙏
+
 ## Version 1.1
 
 - Add funding link. If this extension benefits your professional workflow, and you have the means, perhaps you'd
