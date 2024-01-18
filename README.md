@@ -13,7 +13,7 @@ can be opened.
 - `npm run build`: builds the extension
 - `npm run test`: runs the tests
 - `npm run lint`: runs all lints
-- `npm run fix"`: fixes any fixable linter errors
+- `npm run fix`: fixes any fixable linter errors
 - `npm run watch`: watches for changes, and rebuild the extension
 
 ## Buy Me a Coffee ☕
