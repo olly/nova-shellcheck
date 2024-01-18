@@ -12,6 +12,6 @@
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "forceConsistentCasingInFileNames": true,
-    "newLine": "LF"
-  }
+    "newLine": "LF",
+  },
 }
