@@ -18,7 +18,7 @@ class IssuesProvider {
 
     const documentLength = editor.document.length;
     const content = editor.document.getTextInRange(
-      new Range(0, documentLength)
+      new Range(0, documentLength),
     );
 
     const process: Promise<string> = new Promise((resolve) => {
@@ -92,7 +92,7 @@ let registration: Disposable | null = null;
 exports.activate = function () {
   registration = nova.assistants.registerIssueAssistant(
     { syntax: "shell" },
-    new IssuesProvider()
+    new IssuesProvider(),
   );
 };
 
