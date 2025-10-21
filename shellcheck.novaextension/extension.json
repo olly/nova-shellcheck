@@ -13,5 +13,14 @@
   "activationEvents": ["onLanguage:shell"],
   "entitlements": {
     "process": true
-  }
+  },
+  "config": [
+    {
+      "key": "net.51degrees.shellcheck.include-error-code",
+      "title": "Include shellcheck Error Code",
+      "description": "Whether to include the shellcheck error code in the issue's message.",
+      "type": "boolean",
+      "default": true
+    }
+  ]
 }

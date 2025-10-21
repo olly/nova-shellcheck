@@ -62,11 +62,22 @@ class IssuesProvider {
 
     return process.then(function (stdout) {
       return JSON.parse(stdout).map(function (data: any, i: number) {
-        console.info(i, data.message);
+        const includeErrorCode = nova.config.get(
+          "net.51degrees.shellcheck.include-error-code",
+          "boolean",
+        );
+
+        let message: string;
+        if (includeErrorCode) {
+          message = `SC${data.code}: ${data.message}`;
+        } else {
+          message = data.message;
+        }
+
+        console.info(i, message);
 
         const issue = new Issue();
-
-        issue.message = data.message;
+        issue.message = message;
 
         switch (data.level) {
           case "error":
