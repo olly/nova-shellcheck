@@ -1,3 +1,8 @@
+## Version 1.3
+
+- Include the shellcheck error code in the issue's message. This is enabled by default, but may be disabled in the
+  extension's settings. Thanks [@gkarag](https://github.com/gkarag) 🙏 for the feature request.
+
 ## Version 1.2
 
 - Run `shellcheck` process with the working directory of the Nova Workspace. This ensures that `shellcheck`
